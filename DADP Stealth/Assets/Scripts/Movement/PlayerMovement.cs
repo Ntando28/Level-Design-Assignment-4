@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public float crouchSpeed;
     public float crouchYscale;
     public float startYscale;
-    bool crouching = false;
+    public bool crouching = false;
     
 
 
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 crouching = true;
             }
-            if (crouching == true)
+            else if (crouching == true)
             {
                 crouching = false;
             }
@@ -71,17 +71,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (crouching == true)
         {
+           
             //basically shrinks the capsule and then pushes the capsule down so it does not float 
             transform.localScale = new Vector3(transform.localScale.x, crouchYscale, transform.localScale.z);
-            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
-            MoveSpeed = crouchSpeed;
-        }
+            rb.AddForce(Vector3.down * 0.03f, ForceMode.Impulse);
+            MoveSpeed = 3;
 
-        if (crouching == false)
+        }
+        else if (crouching == false)
         {
             //basically shrinks the capsule and then pushes the capsule down so it does not float 
             transform.localScale = new Vector3(transform.localScale.x, startYscale, transform.localScale.z);
-            MoveSpeed = MoveSpeed;
+            MoveSpeed = 5;
         }
 
 
