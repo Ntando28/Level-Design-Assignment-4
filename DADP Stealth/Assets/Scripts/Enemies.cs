@@ -9,9 +9,8 @@ public class Enemies : MonoBehaviour
 
     public Transform player;
 
-    public LayerMask whatIsGround, whatIsPlayer;
-
-
+    public LayerMask whatIsGround, whatIsPlayer, obstacleLayer;
+    
     //Patrolling 
     public Transform walkPointA;
     public Transform walkPointB;
@@ -21,28 +20,26 @@ public class Enemies : MonoBehaviour
 
 
     //Attacking 
-    public float timeBetweenAttcaks;
+    public float timeBetweenAttacks;
     bool alreadyAttcked;
 
     //States
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
-
-
-
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         player = GameObject.Find("PlayerObject").transform;
         agent = GetComponent<NavMeshAgent>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        Vector3 directionToPlayer = player.position - transform.position;
+        //float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
+        RaycastHit hit;
 
         if(!playerInSight && !playerInAttackRange)
         {
@@ -51,23 +48,27 @@ public class Enemies : MonoBehaviour
 
         if (playerInSight && !playerInAttackRange)
         {
-            ChasePlayer();
+            if (Physics.Raycast(transform.position, directionToPlayer, out hit, sightRange, obstacleLayer))
+            {
+                //Debug.Log("Player Blocked");
+                Patroling();
+            }
+            else
+            {
+                //Debug.Log("Chase Started");
+                ChasePlayer();
+            }
         }
 
         if (playerInSight && playerInAttackRange)
         {
             Attacking();
         }
-
-
     }
 
-
-
+    
     private void Patroling()
     {
-       
-
         if (!walkPointSet)
         {
             agent.SetDestination(walkPointB.position);
@@ -92,12 +93,7 @@ public class Enemies : MonoBehaviour
             }
 
         }
-
-
-
     }
-
-    
 
     private void  Attacking()
     {
@@ -108,11 +104,5 @@ public class Enemies : MonoBehaviour
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
-        
     }
-
-
-
-
-  
 }

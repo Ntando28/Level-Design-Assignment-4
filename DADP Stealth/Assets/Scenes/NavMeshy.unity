@@ -312,8 +312,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341618896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.43, y: 7.06, z: 9.77}
-  m_LocalScale: {x: 6.1, y: 6.1, z: 6.1}
+  m_LocalPosition: {x: -7.9, y: 7.06, z: 0.1223}
+  m_LocalScale: {x: 0.75395995, y: 6.1, z: 84.84216}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -779,7 +779,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 17.1, z: -46.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -828,10 +828,13 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 8
   walkPointA: {fileID: 281343747}
   walkPointB: {fileID: 1421015057}
   walkPointRange: 2
-  timeBetweenAttcaks: 1
+  timeBetweenAttacks: 0
   sightRange: 10
   attackRange: 0.5
   playerInSight: 0
