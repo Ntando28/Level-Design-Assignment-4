@@ -18,6 +18,11 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
+        Vector3 dirToPl = player.position - transform.position;
+        float angToPl = Vector3.Angle(transform.forward, dirToPl);
+        
+        Debug.DrawRay(transform.position,dirToPl,Color.red, 2f);
+        
         if (CanSeePlayer())
         {
             // The enemy can see the player.
