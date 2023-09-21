@@ -9,20 +9,13 @@ using UnityEngine.SceneManagement;
 public class PauseFunction : MonoBehaviour
 {
     public GameObject PauseMenuScreen;
-    public GameObject everything;
-    private bool paused;
-    private bool gameStarted;
-
-    public void Start()
-    {
-        paused = false;
-        gameStarted = false;
-    }
+    public bool paused;
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKeyDown(KeyCode.Tab))
         {
+            Debug.Log("MustPauseNow");
             pauseGame();
         }
     }
@@ -31,11 +24,13 @@ public class PauseFunction : MonoBehaviour
     {
         if (!paused)
         {
+            paused = true;
             Time.timeScale = 0;
             PauseMenuScreen.gameObject.SetActive(true);
             
         } else if (paused)
         {
+            paused = false;
             Time.timeScale = 1;
             PauseMenuScreen.gameObject.SetActive(false);
         }
@@ -43,15 +38,7 @@ public class PauseFunction : MonoBehaviour
     
     public void playGame()
     {
-        if (!gameStarted)
-        {
-            everything.SetActive(true);
-            PauseMenuScreen.gameObject.SetActive(false);
-        }
-        else
-        {
-            pauseGame();
-        }
+        pauseGame();
     }
 
     public void restart()
