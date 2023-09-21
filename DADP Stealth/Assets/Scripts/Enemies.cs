@@ -75,7 +75,7 @@ public class Enemies : MonoBehaviour
 
             Vector3 distanceWalkPoint = transform.position - walkPointB.position;
 
-            if (distanceWalkPoint.magnitude < 5f)
+            if (distanceWalkPoint.magnitude < 1f)
             {
                 walkPointSet = true;
             }
@@ -87,7 +87,7 @@ public class Enemies : MonoBehaviour
 
             Vector3 distanceWalkPoint = transform.position - walkPointA.position;
 
-            if (distanceWalkPoint.magnitude < 5f)
+            if (distanceWalkPoint.magnitude < 1f)
             {
                 walkPointSet = false;
             }
