@@ -21,7 +21,7 @@ public class PauseFunction : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             pauseGame();
         }
@@ -50,10 +50,7 @@ public class PauseFunction : MonoBehaviour
         }
         else
         {
-            gameStarted = true;
-            Time.timeScale = 1;
-            PauseMenuScreen.gameObject.SetActive(false);
-            paused = false;
+            pauseGame();
         }
     }
 
