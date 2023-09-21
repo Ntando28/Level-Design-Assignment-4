@@ -1,31 +1,69 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 
 public class PauseFunction : MonoBehaviour
 {
     public GameObject PauseMenuScreen;
+    public GameObject everything;
+    private bool paused;
+    private bool gameStarted;
 
-    public void PauseGame()
+    public void Start()
     {
-        Time.timeScale = 0;
-        PauseMenuScreen.SetActive(true);
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-        PauseMenuScreen.SetActive(false);
-    }
-    public void RestartGame()
-    {
-        // Reload the current scene
-        SceneManager.LoadScene("GameScene");
-    }
-    public void GoToMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
+        paused = false;
+        gameStarted = false;
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseGame();
+        }
+    }
+
+    public void pauseGame()
+    {
+        if (!paused)
+        {
+            Time.timeScale = 0;
+            PauseMenuScreen.gameObject.SetActive(true);
+            
+        } else if (paused)
+        {
+            Time.timeScale = 1;
+            PauseMenuScreen.gameObject.SetActive(false);
+        }
+    }
+    
+    public void playGame()
+    {
+        if (!gameStarted)
+        {
+            everything.SetActive(true);
+            PauseMenuScreen.gameObject.SetActive(false);
+        }
+        else
+        {
+            gameStarted = true;
+            Time.timeScale = 1;
+            PauseMenuScreen.gameObject.SetActive(false);
+            paused = false;
+        }
+    }
+
+    public void restart()
+    {
+        SceneManager.LoadScene("room");
+    }
+
+    public void quit()
+    {
+        Application.Quit();
+    }
 }
