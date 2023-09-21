@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     //This activates the "Play"button's functionality
     public void Play()
     {
+        Debug.Log("PlayClicked");
         SceneManager.LoadScene("GameScene");
     }
     
